@@ -98,21 +98,57 @@
 //     Nostalgia,
 //     Obserwator,
 //     Odkrywca]
-usedletters = [];
+let wordlist = ["maciej","wojwtek","igor"]
+let wordpicked;
+let usedletters = [];
+let boxes;
+let foundletters = 0;
+let allletters ="QWERTYUIOPASDFGHJKLZXCVBNM";
+function start(){
+    wordpicked = wordlist[Math.floor(Math.random()*3)].toUpperCase();
+    gra.innerHTML=""
+    for(i=0;i<wordpicked.length;i++){
+        gra.innerHTML+="<div class='charbox'></div>";
+    }
+    boxes=document.getElementsByClassName("charbox");
+}
 function key(x){
     if(x==='read'){
         x = event.key.toUpperCase();
     }else{
         x = x.innerHTML;
     }
+    if(allletters.includes(x)){
     mark = document.getElementById(x);
     if(!usedletters.includes(x)) {
-        if ("Maciej".toUpperCase().includes(x)) {
+        if (wordpicked.toUpperCase().includes(x)) {
+            for(i=0;i<wordpicked.length;i++){
+                if(wordpicked.charAt(i)===x.charAt(0)){
+                    boxes[i].innerHTML=x;
+                    foundletters++;
+                }
+            }
             mark.style.backgroundColor = "yellowgreen";
         } else {
             mark.style.backgroundColor = "red";
         }
-        console.log(x);
         usedletters.push(x);
+    }
+    if(foundletters==wordpicked.length){
+        window.alert("WYGRALES")
+        chars=document.getElementsByClassName("button");
+        for(i=0;i<chars.length;i++){
+            chars[i].onclick="";
+            body = document.getElementsByTagName("body");
+            body[0].onkeydown=null;
+            body[0].onkeydown="reset()";
+        }
+    }
+    }
+}
+function reset(){
+    x = event.key;
+    if(x==" "){
+    location.reload;
     }
 }

@@ -4,12 +4,17 @@
     box-sizing: border-box;
 }
 #gra{
-    width:30vw;
+    width:70vw;
     height:30vw;
     border: black 3px solid;
     position: absolute;
     left:50%;
-    margin-left:-15vw;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    margin-left:-35vw;
     top:0.2vw;
 }
 #keyboard{
@@ -45,4 +50,14 @@
 }
 .button:hover{
     filter: invert(100%);
+}
+.charbox{
+    text-align: center;
+    height:7vw;
+    width:10vw;
+    border-bottom: 2px solid gray;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 6vw;
+    margin:10px;
+    margin-bottom: 20px;
 }
